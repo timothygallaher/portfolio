@@ -1,5 +1,5 @@
 # Timothy Gallaher's Portfolio
-# [portfolio-omega-beige-82.vercel.app](portfolio-omega-beige-82.vercel.app)
+# [portfolio-omega-beige-82.vercel.app](https://portfolio-omega-beige-82.vercel.app/)
 ## Course
 ### CPSC: 349 - Web Frontend Engineering
 
