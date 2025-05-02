@@ -1,0 +1,19 @@
+.home {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .home img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 1rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 1rem;
+  }
+  
