@@ -1,34 +1,48 @@
+import { useRef } from 'react';
+import emailjs from 'emailjs-com';
 import './Contact.css';
-import { useState } from 'react';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const form = useRef();
 
-  const handleChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = e => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    alert(`Message sent! Thank you, ${form.name}.`);
-    setForm({ name: '', email: '', message: '' });
+
+    emailjs.sendForm(
+      'service_60yqhuh',    // Service ID
+      'template_ci02d4d',   // Template ID
+      form.current,
+      '62tEvNnhji2OuTMAS'     // Public Key
+    ).then(
+      () => {
+        alert('Message sent!');
+        form.current.reset();
+      },
+      (error) => {
+        console.error('FAILED...', error);
+        alert('Message failed to send.');
+      }
+    );
   };
 
   return (
     <div className="contact">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" required value={form.name} onChange={handleChange} />
+      <form ref={form} onSubmit={sendEmail}>
+        <label>Name</label>
+        <input type="text" name="name" required />
 
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required value={form.email} onChange={handleChange} />
+        <label>Email</label>
+        <input type="email" name="email" required />
 
-        <label htmlFor="message">Message</label>
-        <textarea name="message" id="message" rows="5" required value={form.message} onChange={handleChange}></textarea>
+        <label>Subject</label>
+        <input type="subject" name="subject" required />
+
+        <label>Message</label>
+        <textarea name="message" rows="5" required />
 
         <button type="submit">Send</button>
       </form>
-
+    
       <div className="contact-links">
         <p>Find me on:</p>
         <a href="https://github.com/timothygallaher" target="_blank" rel="noopener noreferrer">GitHub</a><br />
